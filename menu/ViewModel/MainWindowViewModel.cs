@@ -83,12 +83,16 @@ namespace menu.ViewModel
                     switch (selectTable)
                     {
                         case "Categorie":
-                            CategoriesViewModel model = new CategoriesViewModel();
-                            CategoriesView view = new CategoriesView();
-                            view.DataContext = model;
-                            view.Show();
+                            CategoriesViewModel modelCat = new CategoriesViewModel();
+                            CategoriesView viewCat = new CategoriesView();
+                            viewCat.DataContext = modelCat;
+                            viewCat.Show();
                             break;
                         case "Dish":
+                            DishViewModel modelDish = new DishViewModel();
+                            DishView viewDish = new DishView();
+                            viewDish.DataContext = modelDish;
+                            viewDish.Show();
                             break;
                         default:
                             break;

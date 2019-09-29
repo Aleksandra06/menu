@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using menu.Model;
+using menu.View;
 using RGR.Data;
 using System;
 using System.Collections.Generic;
@@ -71,6 +72,7 @@ namespace menu.ViewModel
                         newCat.Categorie = newCategorie;
                         db.CategoriesAdd(newCat);
                         newCategorie = "";
+                        OnPropertyChanged("newCategorie");
                         Update();
                     }
                     else
@@ -90,11 +92,55 @@ namespace menu.ViewModel
                     var parametrtmp = (Categories)parametr;
                     EsaDbContext db = new EsaDbContext();
                     db.CategoriesDelete(parametrtmp);
+                    OnPropertyChanged("CategiriesCollection");
                     Update();
                 }
                 ));
 
             }
+        }
+
+        //private string redactColumn = "True";
+        //public string RedactColumn
+        //{
+        //    get
+        //    {
+        //        return redactColumn;
+        //    }
+        //    set
+        //    {
+        //        redactColumn = value;
+        //        Update();
+        //        OnPropertyChanged("RedactColumn");
+        //    }
+        //}
+
+        CategoriesChangeWindow viewChange;
+        private ICommand redactClick;
+        public ICommand RedactClick
+        {
+            get
+            {
+                return redactClick ?? (redactClick = new RelayCommand<object>((object parametr) =>
+                {
+                    var cat = (Categories)parametr;
+                    CategoriesChangeWindowViewModel modelChange = new CategoriesChangeWindowViewModel(cat);
+                    viewChange = new CategoriesChangeWindow();
+                    viewChange.DataContext = modelChange;
+                    viewChange.Show();
+                }));
+            }
+        }
+        
+        public void Redact(Categories ChangeCat)
+        {
+            Categories Item = CategiriesCollection.Where(i => i.Id == ChangeCat.Id).Single();
+            EsaDbContext db = new EsaDbContext();
+            db.CategoriesDelete(Item);
+            db.CategoriesAdd(ChangeCat);
+            OnPropertyChanged("CategiriesCollection");
+            Update();
+            //viewChange.Close();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

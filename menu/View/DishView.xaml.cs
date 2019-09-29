@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace menu.View
 {
     /// <summary>
-    /// Логика взаимодействия для TableChangeView.xaml
+    /// Логика взаимодействия для DishView.xaml
     /// </summary>
-    public partial class TableChangeView : Window
+    public partial class DishView : Window
     {
-        public TableChangeView()
+        public DishView()
         {
             InitializeComponent();
         }

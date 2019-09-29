@@ -65,6 +65,7 @@
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -93,13 +94,17 @@
     <Compile Include="Model\MenuDish.cs" />
     <Compile Include="Model\Store.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
+    <Compile Include="ViewModel\CategoriesChangeWindowViewModel.cs" />
+    <Compile Include="ViewModel\DishViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\TableChangeViewModel.cs" />
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TableChangeView.xaml.cs">
-      <DependentUpon>TableChangeView.xaml</DependentUpon>
+    <Compile Include="View\CategoriesChangeWindow.xaml.cs">
+      <DependentUpon>CategoriesChangeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DishView.xaml.cs">
+      <DependentUpon>DishView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,7 +122,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TableChangeView.xaml">
+    <Page Include="View\CategoriesChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DishView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
