@@ -93,6 +93,10 @@ namespace menu.ViewModel
                 {
                     var parametrtmp = (Categories)parametr;
                     EsaDbContext db = new EsaDbContext();
+                    foreach(var e in db.DishList)
+                    {
+                        if (e.CatigorieId == parametrtmp.Id) db.DishDelete(e);
+                    }
                     db.CategoriesDelete(parametrtmp);
                     OnPropertyChanged("CategoriesCollection");
                     Update();

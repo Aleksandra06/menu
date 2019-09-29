@@ -30,8 +30,8 @@
                         <GridViewColumn  x:Name="categories" Header="Categorie">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding ElementName=DishList, Path=DataContext.ReturnCategorie}" TextWrapping="Wrap" Margin="0" Width="100">
-                                    </TextBox>
+                                    <Label Content="{Binding ElementName=DishList, Path=DataContext.ReturnCategorie}" Margin="0" Width="100">
+                                    </Label>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -61,11 +61,10 @@
             </Grid.RowDefinitions>
             <Label x:Name="label" Content="Добавление" FontSize="15"  Grid.Column="2" HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom"/>
-            <Label x:Name="label1" Content="Категория:" Grid.Column="2" Grid.Row="1" Margin="5" />
-            <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
-                     TextWrapping="Wrap" Text="{Binding NewDish}" VerticalAlignment="Top" Width="186"/>
+            <Label x:Name="label1" Content="Название блюда:" Grid.Column="2" Grid.Row="1" Margin="5" />
+            <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" TextWrapping="Wrap" Text="{Binding NewDish}" VerticalAlignment="Top" Width="186"/>
             <ComboBox x:Name="textBox1" IsReadOnly="False" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
-                      ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectTable}" VerticalAlignment="Top" Width="186"/>
+                      ItemsSource="{Binding CategoriesSpis}" SelectedItem="{Binding SelectCategories}" VerticalAlignment="Top" Width="186"/>
             <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" 
                     VerticalAlignment="Top" Width="75" Command="{Binding Add}"/>
 

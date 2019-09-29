@@ -42,7 +42,7 @@ namespace menu.ViewModel
             }
         }
 
-        public string ReturnCategorie()
+        public string ReturnCategorie()///?
         {
             IEnumerable<Categories> listItems = CategoriesCollection.Where(i => i.Id.ToString() == categorieId);
             string cat = listItems.ElementAt(0).Categorie.ToString();
@@ -59,8 +59,21 @@ namespace menu.ViewModel
             }
         }
 
-        private string newDish = "";
-        public string NewDish
+        public ObservableCollection<string> CategoriesSpis
+        {
+            get
+            {
+                ObservableCollection<string> tmpCatSpis = new ObservableCollection<string>();
+                foreach(var e in CategoriesCollection)
+                {
+                    tmpCatSpis.Add(e.ToString());
+                }
+                return tmpCatSpis;
+            }
+        }
+
+        private string newDish;
+        private string NewDish
         {
             get
             {
@@ -69,9 +82,9 @@ namespace menu.ViewModel
             set
             {
                 newDish = value;
-                OnPropertyChanged("NewDish");
             }
         }
+        public string SelectCategories { get; set; }
 
         private ICommand add;
         public ICommand Add
@@ -80,19 +93,22 @@ namespace menu.ViewModel
             {
                 return add ?? (add = new RelayCommand(() =>
                 {
-                    if (newDish != "")
+                    if (NewDish != "" && SelectCategories != "")
                     {
-                        Categories newCat = new Categories();
+                        Dish newdish = new Dish();
                         EsaDbContext db = new EsaDbContext();
-                        newCat.Id = DishCollection.Last().Id;
-                        newCat.Categorie = newDish;
-                        db.CategoriesAdd(newCat);
-                        newDish = "";
+                        newdish.Id = DishCollection.Last().Id;
+                        newdish.Name = newDish;
+                        newdish.CatigorieId = CategoriesCollection.Where(i => i.ToString() == SelectCategories).Single().Id;
+                        db.DishAdd(newdish);
+                        NewDish = "";
                         OnPropertyChanged("newDish");
                         Update();
                     }
                     else
-                        MessageBox.Show("Введите категорию");
+                        if(NewDish == "")
+                            MessageBox.Show("Введите блюдо");
+                    else MessageBox.Show("Выберите категорию");
                 }
                 ));
             }
