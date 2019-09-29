@@ -42,7 +42,6 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

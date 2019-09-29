@@ -41,6 +41,8 @@ namespace menu.ViewModel
             {
                 CategoriesCollection.Add(e);
             }
+            OnPropertyChanged("CategoriesCollection");
+            OnPropertyChanged("Categorie");
         }
 
         private string newCategorie = "";
@@ -100,21 +102,6 @@ namespace menu.ViewModel
             }
         }
 
-        //private string redactColumn = "True";
-        //public string RedactColumn
-        //{
-        //    get
-        //    {
-        //        return redactColumn;
-        //    }
-        //    set
-        //    {
-        //        redactColumn = value;
-        //        Update();
-        //        OnPropertyChanged("RedactColumn");
-        //    }
-        //}
-
         CategoriesChangeWindow viewChange;
         private ICommand redactClick;
         public ICommand RedactClick
@@ -136,11 +123,8 @@ namespace menu.ViewModel
         {
             Categories Item = CategoriesCollection.Where(i => i.Id == ChangeCat.Id).Single();
             EsaDbContext db = new EsaDbContext();
-            db.CategoriesDelete(Item);
-            db.CategoriesAdd(ChangeCat);
-            OnPropertyChanged("CategoriesCollection");
+            db.CategoriesChange(ChangeCat);
             Update();
-            //viewChange.Close();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

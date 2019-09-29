@@ -90,6 +90,24 @@ namespace RGR.Data
                 throw;
             }
         }
+        public void CategoriesChange(Categories item)
+        {
+            try
+            {
+                var seach = CategoriesList.Find(item.Id);
+                if (seach != null)
+                {
+                    this.Entry(seach).CurrentValues.SetValues(item);
+                    this.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         public void MenuCategoriesAdd(MenuCatigorie item)
         {
             try

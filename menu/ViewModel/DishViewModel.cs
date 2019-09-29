@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using menu.Model;
@@ -55,6 +56,45 @@ namespace menu.ViewModel
             foreach (var e in db.DishList)
             {
                 DishCollection.Add(e);
+            }
+        }
+
+        private string newDish = "";
+        public string NewDish
+        {
+            get
+            {
+                return newDish;
+            }
+            set
+            {
+                newDish = value;
+                OnPropertyChanged("NewDish");
+            }
+        }
+
+        private ICommand add;
+        public ICommand Add
+        {
+            get
+            {
+                return add ?? (add = new RelayCommand(() =>
+                {
+                    if (newDish != "")
+                    {
+                        Categories newCat = new Categories();
+                        EsaDbContext db = new EsaDbContext();
+                        newCat.Id = DishCollection.Last().Id;
+                        newCat.Categorie = newDish;
+                        db.CategoriesAdd(newCat);
+                        newDish = "";
+                        OnPropertyChanged("newDish");
+                        Update();
+                    }
+                    else
+                        MessageBox.Show("Введите категорию");
+                }
+                ));
             }
         }
 
