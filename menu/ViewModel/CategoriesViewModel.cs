@@ -23,23 +23,23 @@ namespace menu.ViewModel
         public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
         public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
 
-        public ObservableCollection<Categories> CategiriesCollection { get; set; } = new ObservableCollection<Categories>();
+        public ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
         public CategoriesViewModel()
         {
             EsaDbContext db = new EsaDbContext();
             foreach (var e in db.CategoriesList)
             {
-                CategiriesCollection.Add(e);
+                CategoriesCollection.Add(e);
             }
         }
 
         public void Update()
         {
-            CategiriesCollection.Clear();
+            CategoriesCollection.Clear();
             EsaDbContext db = new EsaDbContext();
             foreach (var e in db.CategoriesList)
             {
-                CategiriesCollection.Add(e);
+                CategoriesCollection.Add(e);
             }
         }
 
@@ -68,7 +68,7 @@ namespace menu.ViewModel
                     {
                         Categories newCat = new Categories();
                         EsaDbContext db = new EsaDbContext();
-                        newCat.Id = CategiriesCollection.Last().Id;
+                        newCat.Id = CategoriesCollection.Last().Id;
                         newCat.Categorie = newCategorie;
                         db.CategoriesAdd(newCat);
                         newCategorie = "";
@@ -92,7 +92,7 @@ namespace menu.ViewModel
                     var parametrtmp = (Categories)parametr;
                     EsaDbContext db = new EsaDbContext();
                     db.CategoriesDelete(parametrtmp);
-                    OnPropertyChanged("CategiriesCollection");
+                    OnPropertyChanged("CategoriesCollection");
                     Update();
                 }
                 ));
@@ -134,11 +134,11 @@ namespace menu.ViewModel
         
         public void Redact(Categories ChangeCat)
         {
-            Categories Item = CategiriesCollection.Where(i => i.Id == ChangeCat.Id).Single();
+            Categories Item = CategoriesCollection.Where(i => i.Id == ChangeCat.Id).Single();
             EsaDbContext db = new EsaDbContext();
             db.CategoriesDelete(Item);
             db.CategoriesAdd(ChangeCat);
-            OnPropertyChanged("CategiriesCollection");
+            OnPropertyChanged("CategoriesCollection");
             Update();
             //viewChange.Close();
         }

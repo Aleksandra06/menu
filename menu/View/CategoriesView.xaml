@@ -16,21 +16,20 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="CategoriesList" Grid.Column="0" ItemsSource="{Binding CategiriesCollection}" Height="410" Margin="0,0,0,-249">
+        <ListView Name="CategoriesList" Grid.Column="0" ItemsSource="{Binding CategoriesCollection}" Height="410" Margin="0,0,0,-249">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
                         <GridViewColumn  x:Name="categories" Header="Categorie">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding Path=Categorie}" TextWrapping="Wrap" Margin="0"
-                                             IsReadOnly="{Binding RedactColumn}">
+                                    <Label Content="{Binding Path=Categorie}" Margin="0">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDoubleClick">
                                                 <i:InvokeCommandAction Command="{Binding ElementName=CategoriesList, Path=DataContext.RedactClick}" CommandParameter="{Binding}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                    </TextBox>
+                                    </Label>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
