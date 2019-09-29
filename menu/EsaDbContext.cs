@@ -267,7 +267,23 @@ namespace menu.Data
                 //throw;
             }
         }
-
+        public void MenuDishChange(MenuDish item)
+        {
+            try
+            {
+                var seach = MenuDishList.Find(item.Id);
+                if (seach != null)
+                {
+                    this.Entry(seach).CurrentValues.SetValues(item);
+                    this.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         public void DishIngredientAdd(DishIngredient item)
         {
             try

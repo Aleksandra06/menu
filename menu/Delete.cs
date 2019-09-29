@@ -39,7 +39,7 @@ namespace menu
             db.DishDelete(delDish);
         }
 
-        public void MenuDishDelete (MenuDish delMD)
+        public void MenuDishDelete (MenuDish delMD)//?
         {
             EsaDbContext db = new EsaDbContext();
             db.MenuDishDelete(delMD);

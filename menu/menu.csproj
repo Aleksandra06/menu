@@ -91,6 +91,7 @@
     <Compile Include="Delete.cs" />
     <Compile Include="EsaDbContext.cs" />
     <Compile Include="Model\DishModel.cs" />
+    <Compile Include="Model\MenuDishModel.cs" />
     <Compile Include="Model\Table\Categorie.cs" />
     <Compile Include="Model\Table\Dish.cs" />
     <Compile Include="Model\Table\DishIngredient.cs" />
@@ -103,9 +104,11 @@
     <Compile Include="ViewModel\Change\CategoriesChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\DishChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\IngredientChangeWindowViewModel.cs" />
+    <Compile Include="ViewModel\Change\MenuDishChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\DishViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MenuDishViewModel.cs" />
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>
     </Compile>
@@ -118,11 +121,17 @@
     <Compile Include="View\Change\IngredientChangeWindow.xaml.cs">
       <DependentUpon>IngredientChangeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Change\MenuDishChangeWindow.xaml.cs">
+      <DependentUpon>MenuDishChangeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DishView.xaml.cs">
       <DependentUpon>DishView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IngredientView.xaml.cs">
       <DependentUpon>IngredientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MenuDishView.xaml.cs">
+      <DependentUpon>MenuDishView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -152,11 +161,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Change\MenuDishChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DishView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\IngredientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MenuDishView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

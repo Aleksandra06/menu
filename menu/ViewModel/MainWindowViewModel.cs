@@ -100,6 +100,12 @@ namespace menu.ViewModel
                             viewIngredient.DataContext = modelIngredient;
                             viewIngredient.Show();
                             break;
+                        case "MenuDish":
+                            MenuDishViewModel modelMenuDish = new MenuDishViewModel();
+                            MenuDishView viewMenuDish = new MenuDishView();
+                            viewMenuDish.DataContext = modelMenuDish;
+                            viewMenuDish.Show();
+                            break;
                         default:
                             break;
                 }
