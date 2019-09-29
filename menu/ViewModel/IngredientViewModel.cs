@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using menu.Model;
-using menu.View;
-using menu.ViewModel.Change;
 using menu.Data;
+using menu.Model;
+using menu.View.Change;
+using menu.ViewModel.Change;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,51 +13,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using menu.View.Change;
 
 namespace menu.ViewModel
 {
-    class CategoriesViewModel : INotifyPropertyChanged
+    class IngredientViewModel : INotifyPropertyChanged
     {
-      //  private string id;
-        private string categorie;
+        private string ingredient;
+        public string Ingredient { get { return ingredient; } set { ingredient = value; OnPropertyChanged("Ingredient"); } }
+        public ObservableCollection<Ingredient> IngredientCollection { get; set; } = new ObservableCollection<Ingredient>();
 
-       // public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
-        public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
-
-        public ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
-        public CategoriesViewModel()
+        public IngredientViewModel()
         {
             EsaDbContext db = new EsaDbContext();
-            foreach (var e in db.CategoriesList)
+            foreach (var e in db.IngredientList)
             {
-                CategoriesCollection.Add(e);
+                IngredientCollection.Add(e);
             }
         }
 
         public void Update()
         {
-            CategoriesCollection.Clear();
+            IngredientCollection.Clear();
             EsaDbContext db = new EsaDbContext();
-            foreach (var e in db.CategoriesList)
+            foreach (var e in db.IngredientList)
             {
-                CategoriesCollection.Add(e);
+                IngredientCollection.Add(e);
             }
-            OnPropertyChanged("CategoriesCollection");
-            OnPropertyChanged("Categorie");
+            OnPropertyChanged("IngredientCollection");
+            OnPropertyChanged("Ingredient");
         }
 
-        private string newCategorie = "";
-        public string NewCategorie
+        private string newIngredient = "";
+        public string NewIngredient
         {
             get
             {
-                return newCategorie;
+                return newIngredient;
             }
             set
             {
-                newCategorie = value;
-                OnPropertyChanged("NewCategorie");
+                newIngredient = value;
+                OnPropertyChanged("NewIngredient");
             }
         }
 
@@ -68,24 +64,24 @@ namespace menu.ViewModel
             {
                 return add ?? (add = new RelayCommand(() =>
                 {
-                    if (newCategorie != "")
+                    if (newIngredient != "")
                     {
-                        Categories newCat = new Categories();
+                        Ingredient newIng = new Ingredient();
                         EsaDbContext db = new EsaDbContext();
-                        newCat.Id = CategoriesCollection.Last().Id;
-                        newCat.Categorie = newCategorie;
-                        db.CategoriesAdd(newCat);
-                        newCategorie = "";
-                        OnPropertyChanged("newCategorie");
+                        newIng.Id = IngredientCollection.Last().Id;
+                        newIng.Name = newIngredient;
+                        db.IngredientAdd(newIng);
+                        newIngredient = "";
+                        OnPropertyChanged("newIngredient");
                         Update();
                     }
                     else
-                        MessageBox.Show("Введите категорию");
+                        MessageBox.Show("Введите ингредиент");
                 }
                 ));
             }
         }
-        
+
         private ICommand delete;
         public ICommand Delete
         {
@@ -93,10 +89,10 @@ namespace menu.ViewModel
             {
                 return delete ?? (delete = new RelayCommand<object>((object parametr) =>
                 {
-                    var parametrtmp = (Categories)parametr;
+                    var parametrtmp = (Ingredient)parametr;
                     Delete del = new Delete();
-                    del.CategoriesDelete(parametrtmp);
-                    OnPropertyChanged("CategoriesCollection");
+                    del.IngredientDelete(parametrtmp);
+                    OnPropertyChanged("IngredientCollection");
                     Update();
                 }
                 ));
@@ -104,7 +100,6 @@ namespace menu.ViewModel
             }
         }
 
-        
         private ICommand redactClick;
         public ICommand RedactClick
         {
@@ -112,19 +107,19 @@ namespace menu.ViewModel
             {
                 return redactClick ?? (redactClick = new RelayCommand<object>((object parametr) =>
                 {
-                    var cat = (Categories)parametr;
-                    CategoriesChangeWindowViewModel modelChange = new CategoriesChangeWindowViewModel(cat);
-                    CategoriesChangeWindow viewChange = new CategoriesChangeWindow();
+                    var Ing = (Ingredient)parametr;
+                    IngredientChangeWindowViewModel modelChange = new IngredientChangeWindowViewModel(Ing);
+                    IngredientChangeWindow viewChange = new IngredientChangeWindow();
                     viewChange.DataContext = modelChange;
                     viewChange.Show();
                 }));
             }
         }
-        
-        public void Redact(Categories ChangeCat)
+
+        public void Redact(Ingredient ChangeIng)
         {
             EsaDbContext db = new EsaDbContext();
-            db.CategoriesChange(ChangeCat);
+            db.IngredientChange(ChangeIng);
             Update();
         }
 

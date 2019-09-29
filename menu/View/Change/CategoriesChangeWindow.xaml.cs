@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace menu.View
+namespace menu.View.Change
 {
     /// <summary>
     /// Логика взаимодействия для ChangeWindow.xaml

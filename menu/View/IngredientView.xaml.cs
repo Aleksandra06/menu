@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace menu.View
 {
     /// <summary>
-    /// Логика взаимодействия для CategoriesView.xaml
+    /// Логика взаимодействия для IngredientView.xaml
     /// </summary>
-    public partial class CategoriesView : Window
+    public partial class IngredientView : Window
     {
-        public CategoriesView()
+        public IngredientView()
         {
             InitializeComponent();
         }

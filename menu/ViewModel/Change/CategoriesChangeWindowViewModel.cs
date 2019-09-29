@@ -11,7 +11,7 @@ using menu.ViewModel;
 using menu.View;
 using menu.Model;
 
-namespace menu.ViewModel
+namespace menu.ViewModel.Change
 {
     class CategoriesChangeWindowViewModel : INotifyPropertyChanged
     {

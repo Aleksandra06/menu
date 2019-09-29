@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:menu.View"
         mc:Ignorable="d"
-        Title="DishView" Height="450" Width="800">
+        Title="Dish" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,7 +16,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="DishList" Grid.Column="0" ItemsSource="{Binding DishCollection}" Height="410" Margin="0,0,0,-249">
+        <ListView Name="DishList" Grid.Column="0" ItemsSource="{Binding DishModelCollection}" Height="410" Margin="0,0,0,-249">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
@@ -23,14 +24,24 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Label Content="{Binding Path=Name}" Margin="0" Width="200">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:InvokeCommandAction Command="{Binding ElementName=DishList, Path=DataContext.RedactClick}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </Label>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn  x:Name="categories" Header="Categorie">
+                        <GridViewColumn  x:Name="categories" Header="dish">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding ElementName=DishList, Path=DataContext.ReturnCategorie}" Margin="0" Width="100">
+                                    <Label Content="{Binding Path=Categorie}" Margin="0" Width="100">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:InvokeCommandAction Command="{Binding ElementName=DishList, Path=DataContext.RedactClick}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </Label>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -62,12 +73,12 @@
             <Label x:Name="label" Content="Добавление" FontSize="15"  Grid.Column="2" HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom"/>
             <Label x:Name="label1" Content="Название блюда:" Grid.Column="2" Grid.Row="1" Margin="5" />
-            <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" TextWrapping="Wrap" Text="{Binding NewDish}" VerticalAlignment="Top" Width="186"/>
+            <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
+                     TextWrapping="Wrap" Text="{Binding NewDish}" VerticalAlignment="Top" Width="186"/>
             <ComboBox x:Name="textBox1" IsReadOnly="False" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                       ItemsSource="{Binding CategoriesSpis}" SelectedItem="{Binding SelectCategories}" VerticalAlignment="Top" Width="186"/>
             <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" 
                     VerticalAlignment="Top" Width="75" Command="{Binding Add}"/>
-
         </Grid>
     </Grid>
 </Window>

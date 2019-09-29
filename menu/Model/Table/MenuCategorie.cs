@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace menu.Model
 {
     [Table("MenuCatigorie")]
-    public class MenuCatigorie
+    public class MenuCategorie
    {
         [Key]
         [Column("Id")]

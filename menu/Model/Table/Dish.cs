@@ -17,7 +17,7 @@ namespace menu.Model
 
         public string Name { get; set; }
 
-        public int CatigorieId { get; set; }
+        public int CategorieId { get; set; }
 
         public override string ToString()
         {

@@ -10,23 +10,25 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using menu.Model;
-using RGR.Data;
+using menu.View.Change;
+using menu.ViewModel.Change;
+using menu.Data;
 
 namespace menu.ViewModel
 {
     class DishViewModel : INotifyPropertyChanged
     {
         private string name;
-        private string categorieId;
-        private string id;
+      //  private string categorieId;
+       // private string id;
         private string categorie;
 
         public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
-        public string CategorieId { get { return categorieId; } set { categorieId = value; OnPropertyChanged("categorieId"); } }
-        public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
+      //  public string CategorieId { get { return categorieId; } set { categorieId = value; OnPropertyChanged("categorieId"); } }
+       // public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
         public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
 
-        public ObservableCollection<Dish> DishCollection { get; set; } = new ObservableCollection<Dish>();
+        public ObservableCollection<DishModel> DishModelCollection { get; set; } = new ObservableCollection<DishModel>();
         public ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
         
         public DishViewModel()
@@ -38,24 +40,22 @@ namespace menu.ViewModel
             }
             foreach (var e in db.DishList)
             {
-                DishCollection.Add(e);
+                DishModelCollection.Add(new DishModel(e));
             }
-        }
-
-        public string ReturnCategorie()///?
-        {
-            IEnumerable<Categories> listItems = CategoriesCollection.Where(i => i.Id.ToString() == categorieId);
-            string cat = listItems.ElementAt(0).Categorie.ToString();
-            return cat;
         }
 
         public void Update()
         {
             CategoriesCollection.Clear();
+            DishModelCollection.Clear();
             EsaDbContext db = new EsaDbContext();
+            foreach (var e in db.CategoriesList)
+            {
+                CategoriesCollection.Add(e);
+            }
             foreach (var e in db.DishList)
             {
-                DishCollection.Add(e);
+                DishModelCollection.Add(new DishModel(e));
             }
         }
 
@@ -73,7 +73,7 @@ namespace menu.ViewModel
         }
 
         private string newDish;
-        private string NewDish
+        public string NewDish
         {
             get
             {
@@ -82,8 +82,10 @@ namespace menu.ViewModel
             set
             {
                 newDish = value;
+                OnPropertyChanged("NewDish");
             }
         }
+
         public string SelectCategories { get; set; }
 
         private ICommand add;
@@ -97,9 +99,9 @@ namespace menu.ViewModel
                     {
                         Dish newdish = new Dish();
                         EsaDbContext db = new EsaDbContext();
-                        newdish.Id = DishCollection.Last().Id;
+                        newdish.Id = DishModelCollection.Last().Id;
                         newdish.Name = newDish;
-                        newdish.CatigorieId = CategoriesCollection.Where(i => i.ToString() == SelectCategories).Single().Id;
+                        newdish.CategorieId = CategoriesCollection.Where(i => i.ToString() == SelectCategories).Single().Id;
                         db.DishAdd(newdish);
                         NewDish = "";
                         OnPropertyChanged("newDish");
@@ -121,14 +123,47 @@ namespace menu.ViewModel
             {
                 return delete ?? (delete = new RelayCommand<object>((object parametr) =>
                 {
-                    var parametrtmp = (Dish)parametr;
-                    EsaDbContext db = new EsaDbContext();
-                    db.DishDelete(parametrtmp);
+                    Dish parametrtmp = new Dish();
+                    DishModel tmp = (DishModel)parametr;
+                    parametrtmp.CategorieId = tmp.CategorieId;
+                    parametrtmp.Id = tmp.Id;
+                    parametrtmp.Name = tmp.Name;
+                    Delete del = new Delete();
+                    del.DishDelete(parametrtmp);
+                    OnPropertyChanged("CategoriesCollection");
                     Update();
                 }
                 ));
 
             }
+        }
+
+        private ICommand redactClick;
+        public ICommand RedactClick
+        {
+            get
+            {
+                return redactClick ?? (redactClick = new RelayCommand<object>((object parametr) =>
+                {
+                    var cat = (DishModel)parametr;
+                    DishChangeWindowViewModel modelChange = new DishChangeWindowViewModel(cat);
+                    DishChangeWindow viewChange = new DishChangeWindow();
+                    viewChange.DataContext = modelChange;
+                    viewChange.Show();
+                }));
+            }
+        }
+
+        public void Redact(DishModel ChangeDish)
+        {
+            //DishModel Item = DishModelCollection.Where(i => i.Id == ChangeDish.Id).Single();
+            Dish changeDish = new Dish();
+            changeDish.CategorieId = ChangeDish.CategorieId;
+            changeDish.Id = ChangeDish.Id;
+            changeDish.Name = ChangeDish.Name;
+            EsaDbContext db = new EsaDbContext();
+            db.DishChange(changeDish);
+            Update();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

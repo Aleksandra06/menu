@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace menu.View
+namespace menu.View.Change
 {
     /// <summary>
-    /// Логика взаимодействия для CategoriesView.xaml
+    /// Логика взаимодействия для DishChangeWindow.xaml
     /// </summary>
-    public partial class CategoriesView : Window
+    public partial class DishChangeWindow : Window
     {
-        public CategoriesView()
+        public DishChangeWindow()
         {
             InitializeComponent();
         }
