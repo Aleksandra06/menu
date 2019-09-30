@@ -255,6 +255,7 @@ namespace menu.Data
                 var ser = MenuList.Where(x => x.Id == item.Id).First();
                 ser.MenuCategoryId = item.MenuCategoryId;
                 ser.Name = item.Name;
+                ser.Datum = item.Datum;
                 this.SaveChanges();
             }
             catch (Exception e)
