@@ -94,6 +94,12 @@ namespace menu.ViewModel
                             viewDish.DataContext = modelDish;
                             viewDish.Show();
                             break;
+                        case "DishIngredient":
+                            DishIngredientViewModel modelDI = new DishIngredientViewModel();
+                            DishIngredientView viewDI = new DishIngredientView();
+                            viewDI.DataContext = modelDI;
+                            viewDI.Show();
+                            break;
                         case "Ingredient":
                             IngredientViewModel modelIngredient = new IngredientViewModel();
                             IngredientView viewIngredient = new IngredientView();

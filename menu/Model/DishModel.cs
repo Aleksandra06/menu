@@ -23,13 +23,5 @@ namespace menu.Model
             Dish = dish;
             Categorie = new EsaDbContext().CategoriesList.Where(i => i.Id == CategorieId).Single().Categorie;
         }
-
-        //public DishModel(DishModel dish)
-        //{
-        //    Dish.Id = Id = dish.Id;
-        //    Dish.Name = Name = dish.Name;
-        //    Categorie = dish.Categorie;
-        //    dish.CategorieId = CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == dish.Categorie).Single().Id;
-        //}
     }
 }

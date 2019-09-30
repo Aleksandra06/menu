@@ -199,35 +199,22 @@ namespace menu.Data
             }
         }
 
-        public void DishChange(Dish item)
+        public void DishChange(Dish item, string categorie)
         {
+
             try
             {
-                var seach = DishList.Find(item.Id);
-                if (seach != null)
-                {
-                    this.Entry(seach).CurrentValues.SetValues(item);
-                    this.SaveChanges();
-                }
+                var ser = DishList.Where(x => x.Id == item.Id).First();
+
+                ser.CategorieId = CategoriesList.Where(x => x.Categorie == categorie).First().Id;
+                ser.Name = item.Name;
+                this.SaveChanges();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            //try
-            //{
-            //    var ser = DishList.Where(x => x.Id == item.Id).First();
-
-            //    ser.CategorieId = item.CategorieId;
-            //    ser.Name = item.Name;
-            //    this.SaveChanges();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //    throw;
-            //}
         }
 
         public void MenuAdd(MenuModel item)
