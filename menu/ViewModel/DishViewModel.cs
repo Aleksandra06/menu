@@ -18,18 +18,18 @@ namespace menu.ViewModel
 {
     class DishViewModel : INotifyPropertyChanged
     {
-        private string name;
+       // private string name;
       //  private string categorieId;
        // private string id;
-        private string categorie;
+      //  private string categorie;
 
-        public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
+      //  public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
       //  public string CategorieId { get { return categorieId; } set { categorieId = value; OnPropertyChanged("categorieId"); } }
        // public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
-        public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
+       // public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
 
-        public ObservableCollection<DishModel> DishModelCollection { get; set; } = new ObservableCollection<DishModel>();
-        public ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
+        public static ObservableCollection<DishModel> DishModelCollection { get; set; } = new ObservableCollection<DishModel>();
+        public static ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
         
         public DishViewModel()
         {
@@ -44,15 +44,10 @@ namespace menu.ViewModel
             }
         }
 
-        public void Update()
+        public static void Update()
         {
-            CategoriesCollection.Clear();
             DishModelCollection.Clear();
             EsaDbContext db = new EsaDbContext();
-            foreach (var e in db.CategoriesList)
-            {
-                CategoriesCollection.Add(e);
-            }
             foreach (var e in db.DishList)
             {
                 DishModelCollection.Add(new DishModel(e));
@@ -152,18 +147,6 @@ namespace menu.ViewModel
                     viewChange.Show();
                 }));
             }
-        }
-
-        public void Redact(DishModel ChangeDish)
-        {
-            //DishModel Item = DishModelCollection.Where(i => i.Id == ChangeDish.Id).Single();
-            Dish changeDish = new Dish();
-            changeDish.CategorieId = ChangeDish.CategorieId;
-            changeDish.Id = ChangeDish.Id;
-            changeDish.Name = ChangeDish.Name;
-            EsaDbContext db = new EsaDbContext();
-            db.DishChange(changeDish);
-            Update();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

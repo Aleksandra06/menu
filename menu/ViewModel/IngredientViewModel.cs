@@ -18,9 +18,9 @@ namespace menu.ViewModel
 {
     class IngredientViewModel : INotifyPropertyChanged
     {
-        private string ingredient;
-        public string Ingredient { get { return ingredient; } set { ingredient = value; OnPropertyChanged("Ingredient"); } }
-        public ObservableCollection<Ingredient> IngredientCollection { get; set; } = new ObservableCollection<Ingredient>();
+        //private string ingredient;
+        //public string Ingredient { get { return ingredient; } set { ingredient = value; OnPropertyChanged("Ingredient"); } }
+        public static  ObservableCollection<Ingredient> IngredientCollection { get; set; } = new ObservableCollection<Ingredient>();
 
         public IngredientViewModel()
         {
@@ -31,7 +31,7 @@ namespace menu.ViewModel
             }
         }
 
-        public void Update()
+        public static void Update()
         {
             IngredientCollection.Clear();
             EsaDbContext db = new EsaDbContext();
@@ -39,8 +39,6 @@ namespace menu.ViewModel
             {
                 IngredientCollection.Add(e);
             }
-            OnPropertyChanged("IngredientCollection");
-            OnPropertyChanged("Ingredient");
         }
 
         private string newIngredient = "";
@@ -114,13 +112,6 @@ namespace menu.ViewModel
                     viewChange.Show();
                 }));
             }
-        }
-
-        public void Redact(Ingredient ChangeIng)
-        {
-            EsaDbContext db = new EsaDbContext();
-            db.IngredientChange(ChangeIng);
-            Update();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

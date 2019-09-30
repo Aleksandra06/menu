@@ -20,12 +20,12 @@ namespace menu.ViewModel
     class CategoriesViewModel : INotifyPropertyChanged
     {
       //  private string id;
-        private string categorie;
+       // private string categorie;
 
        // public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
-        public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
+        //public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
 
-        public ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
+        public static ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
         public CategoriesViewModel()
         {
             EsaDbContext db = new EsaDbContext();
@@ -35,7 +35,8 @@ namespace menu.ViewModel
             }
         }
 
-        public void Update()
+        
+        public static void Update()
         {
             CategoriesCollection.Clear();
             EsaDbContext db = new EsaDbContext();
@@ -43,8 +44,6 @@ namespace menu.ViewModel
             {
                 CategoriesCollection.Add(e);
             }
-            OnPropertyChanged("CategoriesCollection");
-            OnPropertyChanged("Categorie");
         }
 
         private string newCategorie = "";
@@ -121,12 +120,7 @@ namespace menu.ViewModel
             }
         }
         
-        public void Redact(Categories ChangeCat)
-        {
-            EsaDbContext db = new EsaDbContext();
-            db.CategoriesChange(ChangeCat);
-            Update();
-        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

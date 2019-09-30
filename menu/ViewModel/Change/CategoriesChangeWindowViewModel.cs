@@ -10,6 +10,7 @@ using System.Windows.Input;
 using menu.ViewModel;
 using menu.View;
 using menu.Model;
+using menu.Data;
 
 namespace menu.ViewModel.Change
 {
@@ -31,9 +32,10 @@ namespace menu.ViewModel.Change
             {
                 return newMeaning ?? (newMeaning = new RelayCommand(() =>
                 {
-                    CategoriesViewModel catModel = new CategoriesViewModel();
                     MeaningCat.Categorie = name;
-                    catModel.Redact(MeaningCat);
+                    EsaDbContext db = new EsaDbContext();
+                    db.CategoriesChange(MeaningCat);
+                    CategoriesViewModel.Update();
                 }));
             }
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 
 namespace menu.Data
@@ -66,12 +67,10 @@ namespace menu.Data
         {
             try
             {
-                var seach = IngredientList.Find(ingredient.Id);
-                if (seach != null)
-                {
-                    this.Entry(seach).CurrentValues.SetValues(ingredient);
-                    this.SaveChanges();
-                }
+                var ser = IngredientList.Where(x => x.Id == ingredient.Id).First();
+                
+                ser.Name = ingredient.Name;
+                this.SaveChanges();
             }
             catch (Exception e)
             {
@@ -112,12 +111,10 @@ namespace menu.Data
         {
             try
             {
-                var seach = CategoriesList.Find(item.Id);
-                if (seach != null)
-                {
-                    this.Entry(seach).CurrentValues.SetValues(item);
-                    this.SaveChanges();
-                }
+                var ser = CategoriesList.Where(x => x.Id == item.Id).First();
+                
+                ser.Categorie = item.Categorie;
+                this.SaveChanges();
             }
             catch (Exception e)
             {
@@ -154,6 +151,21 @@ namespace menu.Data
                 //throw;
                 MessageBox.Show("Невозможно удалить элемент!");
               
+            }
+        }
+        public void MenuCategoriesChange(MenuCategorie item)
+        {
+            try
+            {
+                var ser = MenuCategorieList.Where(x => x.Id == item.Id).First();
+                
+                ser.Name = item.Name;
+                this.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
         public void DishAdd(Dish item)
@@ -203,6 +215,19 @@ namespace menu.Data
                 Console.WriteLine(e);
                 throw;
             }
+            //try
+            //{
+            //    var ser = DishList.Where(x => x.Id == item.Id).First();
+
+            //    ser.CategorieId = item.CategorieId;
+            //    ser.Name = item.Name;
+            //    this.SaveChanges();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //    throw;
+            //}
         }
 
         public void MenuAdd(MenuModel item)
@@ -234,6 +259,21 @@ namespace menu.Data
                 //throw;
                 MessageBox.Show("Невозможно удалить элемент!");
 
+            }
+        }
+        public void MenuChange(MenuModel item)
+        {
+            try
+            {
+                var ser = MenuList.Where(x => x.Id == item.Id).First();
+                ser.MenuCategoryId = item.MenuCategoryId;
+                ser.Name = item.Name;
+                this.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
         public void MenuDishDelete(MenuDish item)
@@ -271,12 +311,12 @@ namespace menu.Data
         {
             try
             {
-                var seach = MenuDishList.Find(item.Id);
-                if (seach != null)
-                {
-                    this.Entry(seach).CurrentValues.SetValues(item);
-                    this.SaveChanges();
-                }
+                var ser = MenuDishList.Where(x => x.Id == item.Id).First();
+
+                ser.CategorieId = item.CategorieId;
+                ser.MenuId = item.MenuId;
+                ser.DishId = item.DishId;
+                this.SaveChanges();
             }
             catch (Exception e)
             {
@@ -316,12 +356,12 @@ namespace menu.Data
         {
             try
             {
-                var seach = DishIngredientList.Find(item.Id);
-                if (seach != null)
-                {
-                    this.Entry(seach).CurrentValues.SetValues(item);
-                    this.SaveChanges();
-                }
+                var ser = DishIngredientList.Where(x => x.Id == item.Id).First();
+
+                ser.Quantity = item.Quantity;
+                ser.IngredientsId = item.IngredientsId;
+                ser.DishId = item.DishId;
+                this.SaveChanges();
             }
             catch (Exception e)
             {
@@ -362,12 +402,11 @@ namespace menu.Data
         {
             try
             {
-                var seach = StoreList.Find(item.Id);
-                if (seach != null)
-                {
-                    this.Entry(seach).CurrentValues.SetValues(item);
-                    this.SaveChanges();
-                }
+                var ser = StoreList.Where(x => x.Id == item.Id).First();
+
+                ser.Quantity = item.Quantity;
+                ser.IngredientsId = item.IngredientsId;
+                this.SaveChanges();
             }
             catch (Exception e)
             {

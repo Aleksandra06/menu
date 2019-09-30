@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using menu.Data;
 using menu.Model;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,10 @@ namespace menu.ViewModel.Change
             {
                 return newMeaning ?? (newMeaning = new RelayCommand(() =>
                 {
-                    IngredientViewModel catModel = new IngredientViewModel();
+                    EsaDbContext db = new EsaDbContext();
                     MeaningIng.Name = name;
-                    catModel.Redact(MeaningIng);
+                    db.IngredientChange(MeaningIng);
+                    IngredientViewModel.Update();
                 }));
             }
         }

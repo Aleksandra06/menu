@@ -48,11 +48,13 @@ namespace menu.ViewModel.Change
             {
                 return newMeaning ?? (newMeaning = new RelayCommand(() =>
                 {
-                    DishViewModel dishModel = new DishViewModel();
-                    MeaningDish.Name = Name;
-                    MeaningDish.Categorie = SelectCategories;
-                    MeaningDish.CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == MeaningDish.Categorie).Single().Id;
-                    dishModel.Redact(MeaningDish);
+                    Dish changeDish = new Dish();
+                    changeDish.Id = MeaningDish.Id;
+                    changeDish.Name = MeaningDish.Name;
+                    MeaningDish.CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == MeaningDish.Categorie).First().Id;
+                    EsaDbContext db = new EsaDbContext();
+                    db.DishChange(changeDish);
+                    DishViewModel.Update();
                 }));
             }
         }
