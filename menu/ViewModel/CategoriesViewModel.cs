@@ -19,12 +19,6 @@ namespace menu.ViewModel
 {
     class CategoriesViewModel : INotifyPropertyChanged
     {
-      //  private string id;
-       // private string categorie;
-
-       // public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
-        //public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
-
         public static ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
         public CategoriesViewModel()
         {

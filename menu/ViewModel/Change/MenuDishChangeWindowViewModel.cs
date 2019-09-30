@@ -77,14 +77,14 @@ namespace menu.ViewModel.Change
             {
                 return newMeaning ?? (newMeaning = new RelayCommand(() =>
                 {
-                    MenuDishViewModel MDModel = new MenuDishViewModel();
-                    MeaningMD.Menu = SelectMenu;
-                    MeaningMD.Dish = SelectDish;
-                    MeaningMD.Categorie = SelectCategorie;
-                    MeaningMD.MenuId = new EsaDbContext().MenuList.Where(i => i.Name == MeaningMD.Menu).Single().Id;
-                    MeaningMD.DishId = new EsaDbContext().DishList.Where(i => i.Name == MeaningMD.Dish).Single().Id;           
-                    MeaningMD.CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == MeaningMD.Categorie).Single().Id;
-                    MDModel.Redact(MeaningMD);
+                    MenuDish changeMD = new MenuDish();
+                    changeMD.CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == SelectCategorie).Single().Id;
+                    changeMD.MenuId = new EsaDbContext().MenuList.Where(i => i.Name == SelectMenu).Single().Id;
+                    changeMD.DishId = new EsaDbContext().DishList.Where(i => i.Name == SelectDish).Single().Id;
+                    changeMD.Id = MeaningMD.Id;
+                    EsaDbContext db = new EsaDbContext();
+                    db.MenuDishChange(changeMD);
+                    MenuDishViewModel.Update();
                 }));
             }
         }

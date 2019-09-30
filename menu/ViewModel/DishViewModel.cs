@@ -18,16 +18,6 @@ namespace menu.ViewModel
 {
     class DishViewModel : INotifyPropertyChanged
     {
-       // private string name;
-      //  private string categorieId;
-       // private string id;
-      //  private string categorie;
-
-      //  public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
-      //  public string CategorieId { get { return categorieId; } set { categorieId = value; OnPropertyChanged("categorieId"); } }
-       // public string Id { get { return id; } set { id = value; OnPropertyChanged("Id"); } }
-       // public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
-
         public static ObservableCollection<DishModel> DishModelCollection { get; set; } = new ObservableCollection<DishModel>();
         public static ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
         

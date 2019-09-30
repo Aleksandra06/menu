@@ -18,16 +18,7 @@ namespace menu.ViewModel
 {
     class MenuDishViewModel : INotifyPropertyChanged
     {
-        //private string menu;
-        //private string dish;
-        //private string categorie;
-
-        //public string Menu { get { return menu; } set { menu = value; OnPropertyChanged("Menu"); } }
-        //public string Dish { get { return dish; } set { dish = value; OnPropertyChanged("Dish"); } }
-        //public string Categorie { get { return categorie; } set { categorie = value; OnPropertyChanged("Categorie"); } }
-
-
-        public ObservableCollection<MenuDishModel> MenuDishModelCollection { get; set; } = new ObservableCollection<MenuDishModel>();
+        public static ObservableCollection<MenuDishModel> MenuDishModelCollection { get; set; } = new ObservableCollection<MenuDishModel>();
 
         public MenuDishViewModel()
         {
@@ -38,7 +29,7 @@ namespace menu.ViewModel
             }
         }
 
-        public void Update()
+        public static void Update()
         {
             MenuDishModelCollection.Clear();
             EsaDbContext db = new EsaDbContext();
@@ -46,7 +37,6 @@ namespace menu.ViewModel
             {
                 MenuDishModelCollection.Add(new MenuDishModel(e));
             }
-            OnPropertyChanged("MenuDishModelCollection");
         }
 
         public ObservableCollection<string> MenuSpis
@@ -132,6 +122,7 @@ namespace menu.ViewModel
                     parametrtmp.CategorieId = tmp.CategorieId;
                     parametrtmp.MenuId = tmp.MenuId;
                     parametrtmp.DishId = tmp.DishId;
+                    parametrtmp.Id = tmp.Id;
                     Delete del = new Delete();
                     del.MenuDishDelete(parametrtmp);
                     Update();
@@ -155,17 +146,6 @@ namespace menu.ViewModel
                     viewChange.Show();
                 }));
             }
-        }
-
-        public void Redact(MenuDishModel ChangeMD)
-        {
-            MenuDish changeMD = new MenuDish();
-            changeMD.CategorieId = ChangeMD.CategorieId;
-            changeMD.MenuId = ChangeMD.MenuId;
-            changeMD.DishId = ChangeMD.DishId;
-            EsaDbContext db = new EsaDbContext();
-            db.MenuDishChange(changeMD);
-            Update();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

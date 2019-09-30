@@ -18,8 +18,6 @@ namespace menu.ViewModel
 {
     class IngredientViewModel : INotifyPropertyChanged
     {
-        //private string ingredient;
-        //public string Ingredient { get { return ingredient; } set { ingredient = value; OnPropertyChanged("Ingredient"); } }
         public static  ObservableCollection<Ingredient> IngredientCollection { get; set; } = new ObservableCollection<Ingredient>();
 
         public IngredientViewModel()

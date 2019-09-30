@@ -6,7 +6,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:menu.View"
         mc:Ignorable="d"
-        Title="MenuDish" Height="450" Width="834">
+        Title="MenuDish" Height="450" Width="850">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="MenuDishList" Grid.Column="0" ItemsSource="{Binding MenuDishModelCollection}" Height="410" Margin="0,0,0,-249">
+        <ListView Name="MenuDishList" Grid.Column="0" ItemsSource="{Binding MenuDishModelCollection}" Height="400" Margin="0,10,0,-119">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
