@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using menu.Model;
-using menu.View;
-using menu.ViewModel.Change;
 using menu.Data;
+using menu.Model;
+using menu.View.Change;
+using menu.ViewModel.Change;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,46 +13,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using menu.View.Change;
 
 namespace menu.ViewModel
 {
-    class CategoriesViewModel : INotifyPropertyChanged
+    class MenuCategorieViewModel : INotifyPropertyChanged
     {
-        public static ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
-        public CategoriesViewModel()
+        public static ObservableCollection<MenuCategorie> MenuCategorieCollection { get; set; } = new ObservableCollection<MenuCategorie>();
+
+        public MenuCategorieViewModel()
         {
             EsaDbContext db = new EsaDbContext();
-            foreach (var e in db.CategoriesList)
+            foreach (var e in db.MenuCategorieList)
             {
-                CategoriesCollection.Add(e);
+                MenuCategorieCollection.Add(e);
             }
         }
 
-        
+
         public static void Update()
         {
-            CategoriesCollection.Clear();
+            MenuCategorieCollection.Clear();
             EsaDbContext db = new EsaDbContext();
-            foreach (var e in db.CategoriesList)
+            foreach (var e in db.MenuCategorieList)
             {
-                CategoriesCollection.Add(e);
+                MenuCategorieCollection.Add(e);
             }
         }
-
-        private string newCategorie = "";
-        public string NewCategorie
-        {
-            get
-            {
-                return newCategorie;
-            }
-            set
-            {
-                newCategorie = value;
-                OnPropertyChanged("NewCategorie");
-            }
-        }
+        
+        public string NewMenuCategorie { get; set; }
 
         private ICommand add;
         public ICommand Add
@@ -61,24 +49,24 @@ namespace menu.ViewModel
             {
                 return add ?? (add = new RelayCommand(() =>
                 {
-                    if (newCategorie != "")
+                    if (NewMenuCategorie != "")
                     {
-                        Categories newCat = new Categories();
+                        MenuCategorie newCat = new MenuCategorie();
                         EsaDbContext db = new EsaDbContext();
-                        newCat.Id = CategoriesCollection.Last().Id;
-                        newCat.Categorie = newCategorie;
-                        db.CategoriesAdd(newCat);
-                        newCategorie = "";
-                        OnPropertyChanged("newCategorie");
+                        newCat.Id = MenuCategorieCollection.Last().Id;
+                        newCat.Name = NewMenuCategorie;
+                        db.MenuCategoriesAdd(newCat);
+                        NewMenuCategorie = "";
+                        OnPropertyChanged("NewMenuCategorie");
                         Update();
                     }
                     else
-                        MessageBox.Show("Введите категорию");
+                        MessageBox.Show("Введите категорию меню");
                 }
                 ));
             }
         }
-        
+
         private ICommand delete;
         public ICommand Delete
         {
@@ -86,10 +74,10 @@ namespace menu.ViewModel
             {
                 return delete ?? (delete = new RelayCommand<object>((object parametr) =>
                 {
-                    var parametrtmp = (Categories)parametr;
+                    var parametrtmp = (MenuCategorie)parametr;
                     Delete del = new Delete();
-                    del.CategoriesDelete(parametrtmp);
-                    OnPropertyChanged("CategoriesCollection");
+                    del.MenuCategorieDelete(parametrtmp);
+                    OnPropertyChanged("MenuCategorieCollection");
                     Update();
                 }
                 ));
@@ -97,7 +85,7 @@ namespace menu.ViewModel
             }
         }
 
-        
+
         private ICommand redactClick;
         public ICommand RedactClick
         {
@@ -105,9 +93,9 @@ namespace menu.ViewModel
             {
                 return redactClick ?? (redactClick = new RelayCommand<object>((object parametr) =>
                 {
-                    var cat = (Categories)parametr;
-                    CategoriesChangeWindowViewModel modelChange = new CategoriesChangeWindowViewModel(cat);
-                    CategoriesChangeWindow viewChange = new CategoriesChangeWindow();
+                    var cat = (MenuCategorie)parametr;
+                    MenuCategorieChangeWindowViewModel modelChange = new MenuCategorieChangeWindowViewModel(cat);
+                    MenuCategorieChangeWindow viewChange = new MenuCategorieChangeWindow();
                     viewChange.DataContext = modelChange;
                     viewChange.Show();
                 }));

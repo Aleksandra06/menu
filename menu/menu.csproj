@@ -108,6 +108,7 @@
     <Compile Include="ViewModel\Change\DishChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\DishIngredientChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\IngredientChangeWindowViewModel.cs" />
+    <Compile Include="ViewModel\Change\MenuCategorieChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\MenuChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\MenuDishChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\StoreChangeWindowViewModel.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="ViewModel\DishViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MenuCategorieViewModel.cs" />
     <Compile Include="ViewModel\MenuDishViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\StoreViewModel.cs" />
@@ -133,6 +135,9 @@
     <Compile Include="View\Change\IngredientChangeWindow.xaml.cs">
       <DependentUpon>IngredientChangeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Change\MenuCategorieChangeWindow.xaml.cs">
+      <DependentUpon>MenuCategorieChangeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Change\MenuChangeWindow.xaml.cs">
       <DependentUpon>MenuChangeWindow.xaml</DependentUpon>
     </Compile>
@@ -150,6 +155,9 @@
     </Compile>
     <Compile Include="View\IngredientView.xaml.cs">
       <DependentUpon>IngredientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MenuCategorieView.xaml.cs">
+      <DependentUpon>MenuCategorieView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuDishView.xaml.cs">
       <DependentUpon>MenuDishView.xaml</DependentUpon>
@@ -192,6 +200,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Change\MenuCategorieChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Change\MenuChangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\IngredientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MenuCategorieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
