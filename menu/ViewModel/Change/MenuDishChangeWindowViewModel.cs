@@ -78,11 +78,11 @@ namespace menu.ViewModel.Change
                 return newMeaning ?? (newMeaning = new RelayCommand(() =>
                 {
                     MenuDish changeMD = new MenuDish();
-                    changeMD.CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == SelectCategorie).Single().Id;
-                    changeMD.MenuId = new EsaDbContext().MenuList.Where(i => i.Name == SelectMenu).Single().Id;
-                    changeMD.DishId = new EsaDbContext().DishList.Where(i => i.Name == SelectDish).Single().Id;
-                    changeMD.Id = MeaningMD.Id;
                     EsaDbContext db = new EsaDbContext();
+                    changeMD.CategorieId = db.CategoriesList.Where(i => i.Categorie == SelectCategorie).Single().Id;
+                    changeMD.MenuId = db.MenuList.Where(i => i.Name == SelectMenu).Single().Id;
+                    changeMD.DishId = db.DishList.Where(i => i.Name == SelectDish).Single().Id;
+                    changeMD.Id = MeaningMD.Id;
                     db.MenuDishChange(changeMD);
                     MenuDishViewModel.Update();
                 }));

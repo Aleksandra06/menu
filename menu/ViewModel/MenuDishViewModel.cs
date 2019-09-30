@@ -97,9 +97,9 @@ namespace menu.ViewModel
                         MenuDish newMD = new MenuDish();
                         EsaDbContext db = new EsaDbContext();
                         newMD.Id = MenuDishModelCollection.Last().Id;
-                        newMD.MenuId = new EsaDbContext().MenuList.Where(i => i.Name == SelectMenu).Single().Id;
-                        newMD.DishId = new EsaDbContext().DishList.Where(i => i.Name == SelectDish).Single().Id;
-                        newMD.CategorieId = new EsaDbContext().CategoriesList.Where(i => i.Categorie == SelectCategorie).Single().Id;
+                        newMD.MenuId = db.MenuList.Where(i => i.Name == SelectMenu).Single().Id;
+                        newMD.DishId = db.DishList.Where(i => i.Name == SelectDish).Single().Id;
+                        newMD.CategorieId = db.CategoriesList.Where(i => i.Categorie == SelectCategorie).Single().Id;
                         db.MenuDishAdd(newMD);
                         Update();
                     }
