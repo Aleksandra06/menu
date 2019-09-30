@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\Change\IngredientChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\MenuChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\Change\MenuDishChangeWindowViewModel.cs" />
+    <Compile Include="ViewModel\Change\StoreChangeWindowViewModel.cs" />
     <Compile Include="ViewModel\DishIngredientViewModel.cs" />
     <Compile Include="ViewModel\DishViewModel.cs" />
     <Compile Include="ViewModel\IngredientViewModel.cs" />
@@ -137,6 +138,9 @@
     </Compile>
     <Compile Include="View\Change\MenuDishChangeWindow.xaml.cs">
       <DependentUpon>MenuDishChangeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Change\StoreChangeWindow.xaml.cs">
+      <DependentUpon>StoreChangeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DishIngredientView.xaml.cs">
       <DependentUpon>DishIngredientView.xaml</DependentUpon>
@@ -193,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Change\MenuDishChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Change\StoreChangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

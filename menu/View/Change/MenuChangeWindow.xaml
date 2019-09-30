@@ -22,8 +22,8 @@
         <Label x:Name="label" Content="Введите изменения" FontSize="15"  Grid.Column="0" HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom"/>
         <Label x:Name="label1" Content="Введите название:" Grid.Column="0" Grid.Row="1" Margin="5" />
-        <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
-                     TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="26" Margin="5,5,0,0" 
+                     TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="134"/>
         <ComboBox x:Name="comboBox2" IsReadOnly="False" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                       ItemsSource="{Binding MenuCategorySpis}" SelectedItem="{Binding MenuCategory}" VerticalAlignment="Top" Width="134"/>
         <Button x:Name="button" Content="Применить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Grid.Column="1" 

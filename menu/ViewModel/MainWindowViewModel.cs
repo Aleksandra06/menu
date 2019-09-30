@@ -118,6 +118,12 @@ namespace menu.ViewModel
                             viewMenuDish.DataContext = modelMenuDish;
                             viewMenuDish.Show();
                             break;
+                        case "Store":
+                            StoreViewModel modelStore = new StoreViewModel();
+                            StoreView viewStore = new StoreView();
+                            viewStore.DataContext = modelStore;
+                            viewStore.Show();
+                            break;
                         default:
                             break;
                 }
