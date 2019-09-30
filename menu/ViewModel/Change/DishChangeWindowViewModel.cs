@@ -49,6 +49,7 @@ namespace menu.ViewModel.Change
                 return newMeaning ?? (newMeaning = new RelayCommand(() =>
                 {
                     EsaDbContext dbContext = new EsaDbContext();
+                    MeaningDish.Dish.Name = Name;
                     dbContext.DishChange(MeaningDish.Dish, SelectCategories);
                     DishViewModel.Update();
                 }));
