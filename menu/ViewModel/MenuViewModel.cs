@@ -82,6 +82,20 @@ namespace menu.ViewModel
             }
         }
 
+        private ICommand updateClick;
+        public ICommand UpdateClick
+        {
+            get
+            {
+                return updateClick ?? (updateClick = new RelayCommand(() =>
+                {
+                    Update();
+                }
+                ));
+
+            }
+        }
+
         private ICommand delete;
         public ICommand Delete
         {

@@ -94,7 +94,8 @@
                       ItemsSource="{Binding MenuCategorySpis}" SelectedItem="{Binding SelectMenuCategory}" VerticalAlignment="Top" Width="186"/>
             <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" 
                     VerticalAlignment="Top" Width="75" Command="{Binding Add}"/>
-
+            <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" 
+                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
 
         </Grid>
     </Grid>
