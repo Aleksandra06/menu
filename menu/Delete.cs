@@ -16,7 +16,7 @@ namespace menu
             EsaDbContext db = new EsaDbContext();
             foreach (var e in db.DishList)
             {
-                if (e.CategorieId == delCat.Id) DishDelete(e);
+                if (e.CatigorieId == delCat.Id) DishDelete(e);
             }
             foreach (var e in db.MenuDishList)
             {
@@ -81,7 +81,7 @@ namespace menu
             db.MenuDelete(delMenu);
         }
 
-        public void MenuCategorieDelete(MenuCategorie delMC)
+        public void MenuCategorieDelete(MenuCatigorie delMC)
         {
             EsaDbContext db = new EsaDbContext();
             foreach (var e in db.MenuList)

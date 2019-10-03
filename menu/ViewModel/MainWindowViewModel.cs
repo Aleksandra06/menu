@@ -85,48 +85,57 @@ namespace menu.ViewModel
                         case "Categorie":
                             CategoriesViewModel modelCat = new CategoriesViewModel();
                             CategoriesView viewCat = new CategoriesView();
+                            viewCat.ResizeMode = ResizeMode.NoResize;//убрать
+                            //viewCat.ResizeMode = ResizeMode.CanMinimize;//деактевировать
                             viewCat.DataContext = modelCat;
                             viewCat.Show();
                             break;
                         case "Dish":
                             DishViewModel modelDish = new DishViewModel();
                             DishView viewDish = new DishView();
+                            viewDish.ResizeMode = ResizeMode.NoResize;
                             viewDish.DataContext = modelDish;
                             viewDish.Show();
                             break;
                         case "DishIngredient":
                             DishIngredientViewModel modelDI = new DishIngredientViewModel();
                             DishIngredientView viewDI = new DishIngredientView();
+                            viewDI.ResizeMode = ResizeMode.NoResize;
                             viewDI.DataContext = modelDI;
                             viewDI.Show();
                             break;
                         case "Ingredient":
                             IngredientViewModel modelIngredient = new IngredientViewModel();
                             IngredientView viewIngredient = new IngredientView();
+                            viewIngredient.ResizeMode = ResizeMode.NoResize;
                             viewIngredient.DataContext = modelIngredient;
                             viewIngredient.Show();
                             break;
                         case "Menu":
                             MenuViewModel modelMenu = new MenuViewModel();
                             MenuView viewMenu = new MenuView();
+                            viewMenu.ResizeMode = ResizeMode.NoResize;
                             viewMenu.DataContext = modelMenu;
                             viewMenu.Show();
                             break;
                         case "MenuDish":
                             MenuDishViewModel modelMenuDish = new MenuDishViewModel();
                             MenuDishView viewMenuDish = new MenuDishView();
+                            viewMenuDish.ResizeMode = ResizeMode.NoResize;
                             viewMenuDish.DataContext = modelMenuDish;
                             viewMenuDish.Show();
                             break;
                         case "MenuCategorie":
                             MenuCategorieViewModel modelMenuCategorie = new MenuCategorieViewModel();
                             MenuCategorieView viewMenuCategorie = new MenuCategorieView();
+                            viewMenuCategorie.ResizeMode = ResizeMode.NoResize;
                             viewMenuCategorie.DataContext = modelMenuCategorie;
                             viewMenuCategorie.Show();
                             break;
                         case "Store":
                             StoreViewModel modelStore = new StoreViewModel();
                             StoreView viewStore = new StoreView();
+                            viewStore.ResizeMode = ResizeMode.NoResize;
                             viewStore.DataContext = modelStore;
                             viewStore.Show();
                             break;

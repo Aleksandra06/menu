@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace menu.Model
 {
-    [Table("MenuCategorie")]
-    public class MenuCategorie
+    [Table("MenuCatigorie")]
+    public class MenuCatigorie
    {
         [Key]
         [Column("Id")]

@@ -26,7 +26,7 @@ namespace menu.Data
         public virtual DbSet<Ingredient> IngredientList { get; set; }
         public virtual DbSet<Dish> DishList { get; set; }
         public virtual DbSet<MenuModel> MenuList { get; set; }
-        public virtual DbSet<MenuCategorie> MenuCategorieList { get; set; }
+        public virtual DbSet<MenuCatigorie> MenuCategorieList { get; set; }
         public virtual DbSet<MenuDish> MenuDishList { get; set; }
         public virtual DbSet<Store> StoreList { get; set; }
 
@@ -123,7 +123,7 @@ namespace menu.Data
             }
         }
 
-        public void MenuCategoriesAdd(MenuCategorie item)
+        public void MenuCategoriesAdd(MenuCatigorie item)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace menu.Data
                 throw;
             }
         }
-        public void MenuCategoriesDelete(MenuCategorie item)
+        public void MenuCategoriesDelete(MenuCatigorie item)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace menu.Data
               
             }
         }
-        public void MenuCategoriesChange(MenuCategorie item)
+        public void MenuCategoriesChange(MenuCatigorie item)
         {
             try
             {
@@ -206,7 +206,7 @@ namespace menu.Data
             {
                 var ser = DishList.Where(x => x.Id == item.Id).First();
 
-                ser.CategorieId = CategoriesList.Where(x => x.Categorie == categorie).First().Id;
+                ser.CatigorieId = CategoriesList.Where(x => x.Categorie == categorie).First().Id;
                 ser.Name = item.Name;
                 this.SaveChanges();
             }

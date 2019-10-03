@@ -7,8 +7,10 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Categories" Height="450" Width="434">
+    
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,7 +18,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="CategoriesList" Grid.Column="0" ItemsSource="{Binding CategoriesCollection}" Height="410" Margin="0,0,0,-249">
+        <ListView Name="CategoriesList" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding CategoriesCollection}" Height="370" Margin="0,0,0,-249">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
@@ -38,7 +40,7 @@
                                 <DataTemplate>
                                     <Button Name="deleteButton" Content="Удалить" Padding="1" Width="90" Height="25" 
                                             Command="{Binding ElementName=CategoriesList, Path=DataContext.Delete}" 
-                                            CommandParameter="{Binding}"/>
+                                            CommandParameter="{Binding}" IsEnabled="{Binding Activity}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -46,7 +48,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Column="1" Grid.Row="0">
+        <Grid Grid.Column="1" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
@@ -61,8 +63,8 @@
                      TextWrapping="Wrap" Text="{Binding NewCategorie}" VerticalAlignment="Top" Width="186"/>
             <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" 
                     VerticalAlignment="Top" Width="75" Command="{Binding Add}"/>
-            <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" 
-                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
         </Grid>
+        <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" 
+                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
     </Grid>
 </Window>

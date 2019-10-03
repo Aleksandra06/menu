@@ -14,10 +14,10 @@ namespace menu.ViewModel.Change
 {
     class MenuCategorieChangeWindowViewModel : INotifyPropertyChanged
     {
-        public MenuCategorie MeaningCat { get; set; }
+        public MenuCatigorie MeaningCat { get; set; }
         public string Name { get; set; }
 
-        public MenuCategorieChangeWindowViewModel(MenuCategorie cat)
+        public MenuCategorieChangeWindowViewModel(MenuCatigorie cat)
         {
             MeaningCat = cat;
             Name = MeaningCat.ToString();

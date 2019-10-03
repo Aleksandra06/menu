@@ -54,6 +54,15 @@ namespace menu.ViewModel
             }
         }
 
+        public bool Activity
+        {
+            get
+            {
+
+                return false;
+            }
+        }
+
         private ICommand add;
         public ICommand Add
         {

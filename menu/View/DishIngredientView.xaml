@@ -6,17 +6,19 @@
         xmlns:local="clr-namespace:menu.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="DishIngredient" Height="450" Width="900">
+        Title="DishIngredient" Height="490" Width="900">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="DishIngredientList" Grid.Column="0" Height="400" ItemsSource="{Binding DishIngredientModelCollection}" Margin="0,10,0,-177">
+        <ListView Name="DishIngredientList" Grid.Column="0" Height="400" ItemsSource="{Binding DishIngredientModelCollection}" 
+                  Margin="0,50,0,-128" Grid.RowSpan="2">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
@@ -26,7 +28,8 @@
                                     <Label Content="{Binding Path=Ingredients}" Margin="0" Width="200">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDoubleClick">
-                                                <i:InvokeCommandAction Command="{Binding ElementName=DishIngredientList, Path=DataContext.RedactClick}" CommandParameter="{Binding}"/>
+                                                <i:InvokeCommandAction Command="{Binding ElementName=DishIngredientList, Path=DataContext.RedactClick}" 
+                                                                       CommandParameter="{Binding}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Label>
@@ -39,7 +42,8 @@
                                     <Label Content="{Binding Path=Dish}" Margin="0" Width="100">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDoubleClick">
-                                                <i:InvokeCommandAction Command="{Binding ElementName=DishIngredientList, Path=DataContext.RedactClick}" CommandParameter="{Binding}"/>
+                                                <i:InvokeCommandAction Command="{Binding ElementName=DishIngredientList, Path=DataContext.RedactClick}"
+                                                                       CommandParameter="{Binding}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Label>
@@ -52,7 +56,8 @@
                                     <Label Content="{Binding Path=Quantity}" Margin="0" Width="100">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDoubleClick">
-                                                <i:InvokeCommandAction Command="{Binding ElementName=DishIngredientList, Path=DataContext.RedactClick}" CommandParameter="{Binding}"/>
+                                                <i:InvokeCommandAction Command="{Binding ElementName=DishIngredientList, Path=DataContext.RedactClick}" 
+                                                                       CommandParameter="{Binding}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Label>
@@ -74,8 +79,10 @@
             </ListView.View>
         </ListView>
 
-        <Grid Grid.Column="1" Grid.Row="0">
+        <Grid Grid.Column="1" Grid.RowSpan="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
@@ -84,19 +91,21 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label x:Name="label" Content="Добавление" FontSize="15"  Grid.Column="2" HorizontalAlignment="Left" 
+            <Label x:Name="label" Content="Добавление" FontSize="15"  HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom"/>
-            <Label x:Name="label1" Content="Выберете:" Grid.Column="2" Grid.Row="1" Margin="5" />
+            <Label x:Name="label1" Content="Выберете ингредиент:" Grid.Row="1" Margin="5" />
+            <Label x:Name="label2" Content="Выберете блюдо:" Grid.Row="3" Margin="5" />
+            <Label x:Name="label3" Content="Введите количество ингредиента:" Grid.Row="5" Margin="5" />
             <ComboBox x:Name="comboBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                       ItemsSource="{Binding IngredientsSpis}" SelectedItem="{Binding SelectIngredients}" VerticalAlignment="Top" Width="186"/>
-            <ComboBox x:Name="comboBox1" IsReadOnly="False" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
+            <ComboBox x:Name="comboBox1" IsReadOnly="False" Grid.Row="4" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                       ItemsSource="{Binding DishSpis}" SelectedItem="{Binding SelectDish}" VerticalAlignment="Top" Width="186"/>
-            <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="4" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
+            <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="6" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                      TextWrapping="Wrap" Text="{Binding NewQuantity}" VerticalAlignment="Top" Width="186"/>
-            <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="5" 
+            <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="7" 
                     VerticalAlignment="Top" Width="75" Command="{Binding Add}"/>
-            <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" 
-                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
         </Grid>
+        <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" Grid.Column="0"
+                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
     </Grid>
 </Window>

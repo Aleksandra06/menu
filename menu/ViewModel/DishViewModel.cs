@@ -86,7 +86,7 @@ namespace menu.ViewModel
                         EsaDbContext db = new EsaDbContext();
                         newdish.Id = DishModelCollection.Last().Id;
                         newdish.Name = newDish;
-                        newdish.CategorieId = CategoriesCollection.Where(i => i.ToString() == SelectCategories).Single().Id;
+                        newdish.CatigorieId = CategoriesCollection.Where(i => i.ToString() == SelectCategories).Single().Id;
                         db.DishAdd(newdish);
                         NewDish = "";
                         OnPropertyChanged("newDish");
@@ -124,7 +124,7 @@ namespace menu.ViewModel
                 {
                     Dish parametrtmp = new Dish();
                     DishModel tmp = (DishModel)parametr;
-                    parametrtmp.CategorieId = tmp.CategorieId;
+                    parametrtmp.CatigorieId = tmp.CategorieId;
                     parametrtmp.Id = tmp.Id;
                     parametrtmp.Name = tmp.Name;
                     Delete del = new Delete();

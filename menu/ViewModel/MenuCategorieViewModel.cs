@@ -18,7 +18,7 @@ namespace menu.ViewModel
 {
     class MenuCategorieViewModel : INotifyPropertyChanged
     {
-        public static ObservableCollection<MenuCategorie> MenuCategorieCollection { get; set; } = new ObservableCollection<MenuCategorie>();
+        public static ObservableCollection<MenuCatigorie> MenuCategorieCollection { get; set; } = new ObservableCollection<MenuCatigorie>();
 
         public MenuCategorieViewModel()
         {
@@ -51,7 +51,7 @@ namespace menu.ViewModel
                 {
                     if (NewMenuCategorie != "")
                     {
-                        MenuCategorie newCat = new MenuCategorie();
+                        MenuCatigorie newCat = new MenuCatigorie();
                         EsaDbContext db = new EsaDbContext();
                         newCat.Id = MenuCategorieCollection.Last().Id;
                         newCat.Name = NewMenuCategorie;
@@ -88,7 +88,7 @@ namespace menu.ViewModel
             {
                 return delete ?? (delete = new RelayCommand<object>((object parametr) =>
                 {
-                    var parametrtmp = (MenuCategorie)parametr;
+                    var parametrtmp = (MenuCatigorie)parametr;
                     Delete del = new Delete();
                     del.MenuCategorieDelete(parametrtmp);
                     OnPropertyChanged("MenuCategorieCollection");
@@ -107,7 +107,7 @@ namespace menu.ViewModel
             {
                 return redactClick ?? (redactClick = new RelayCommand<object>((object parametr) =>
                 {
-                    var cat = (MenuCategorie)parametr;
+                    var cat = (MenuCatigorie)parametr;
                     MenuCategorieChangeWindowViewModel modelChange = new MenuCategorieChangeWindowViewModel(cat);
                     MenuCategorieChangeWindow viewChange = new MenuCategorieChangeWindow();
                     viewChange.DataContext = modelChange;

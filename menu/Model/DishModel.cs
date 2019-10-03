@@ -19,7 +19,7 @@ namespace menu.Model
         {
             Id = dish.Id;
             Name = dish.Name;
-            CategorieId = dish.CategorieId;
+            CategorieId = dish.CatigorieId;
             Dish = dish;
             Categorie = new EsaDbContext().CategoriesList.Where(i => i.Id == CategorieId).Single().Categorie;
         }

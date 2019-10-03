@@ -99,7 +99,7 @@
     <Compile Include="Model\Table\DishIngredient.cs" />
     <Compile Include="Model\Table\Ingredient.cs" />
     <Compile Include="Model\Table\Menu.cs" />
-    <Compile Include="Model\Table\MenuCategorie.cs" />
+    <Compile Include="Model\Table\MenuCatigorie.cs" />
     <Compile Include="Model\Table\MenuDish.cs" />
     <Compile Include="Model\MenuMModel.cs" />
     <Compile Include="Model\Table\Store.cs" />

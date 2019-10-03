@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:menu.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="IngredientView" Height="450" Width="534">
+        Title="IngredientView" Height="490" Width="534">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,7 +17,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="IngredientList" Grid.Column="0" ItemsSource="{Binding IngredientCollection}" Height="410" Margin="0,0,0,-249">
+        <ListView Name="IngredientList" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding IngredientCollection}" Height="410" Margin="0,0,0,-249">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
@@ -47,7 +48,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Column="1" Grid.Row="0">
+        <Grid Grid.Column="1" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
@@ -57,14 +58,13 @@
             </Grid.RowDefinitions>
             <Label x:Name="label" Content="Добавление" FontSize="15"  Grid.Column="2" HorizontalAlignment="Left" 
                    VerticalAlignment="Bottom"/>
-            <Label x:Name="label1" Content="Ингредиент:" Grid.Column="2" Grid.Row="1" Margin="5" />
+            <Label x:Name="label1" Content="Введите название ингредиента:" Grid.Column="2" Grid.Row="1" Margin="5" />
             <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                      TextWrapping="Wrap" Text="{Binding NewIngredient}" VerticalAlignment="Top" Width="186"/>
             <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" 
                     VerticalAlignment="Top" Width="75" Command="{Binding Add}"/>
-            <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" 
-                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
-
         </Grid>
+        <Button x:Name="button1" Content="Обновить" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" Grid.Column="0"
+                    VerticalAlignment="Top" Width="75" Command="{Binding UpdateClick}"/>
     </Grid>
 </Window>
