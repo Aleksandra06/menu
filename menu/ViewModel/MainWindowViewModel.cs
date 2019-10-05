@@ -165,47 +165,47 @@ namespace menu.ViewModel
                 return saveJson ?? (saveJson = new RelayCommand(() =>
                 {
                     EsaDbContext db = new EsaDbContext();
-                    using (StreamWriter file = new StreamWriter("Categories.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Categories.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.CategoriesList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("DishIngredient.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\DishIngredient.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.DishIngredientList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("Dish.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Dish.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.DishList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("Ingredient.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Ingredient.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.IngredientList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("MenuCategorie.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\MenuCategorie.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.MenuCategorieList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("MenuDish.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\MenuDish.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.MenuDishList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("Menu.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Menu.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.MenuList);
                         file.Write(json);
                     }
-                    using (StreamWriter file = new StreamWriter("Store.json"))
+                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Store.json"))
                     {
                         var json = JsonConvert.SerializeObject(db.StoreList);
                         file.Write(json);
                     }
-
+                    MessageBox.Show(@"Cохранено в C:\Users\Public\Documents\menu\");
                 }));
             }
         }
