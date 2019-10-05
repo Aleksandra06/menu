@@ -18,6 +18,7 @@ using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.IO;
+using menu.Data;
 
 namespace menu.ViewModel
 {
@@ -154,24 +155,60 @@ namespace menu.ViewModel
             }
         }
 
-        //private ICommand saveJson;
-        //public ICommand SaveJson
-        //{
+        private ICommand saveJson;
+        public ICommand SaveJson
+        {
 
-        //    get
-        //    {
+            get
+            {
 
-        //        return saveJson ?? (saveJson = new RelayCommand(() =>
-        //        {
-        //            //DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<CardModel>));
-        //            using (StreamWriter file = new StreamWriter("visitks.json"))
-        //            {
-        //                var json = JsonConvert.SerializeObject(model);
-        //                file.Write(json);
-        //            }
-        //        }));
-        //    }
-        //}
+                return saveJson ?? (saveJson = new RelayCommand(() =>
+                {
+                    EsaDbContext db = new EsaDbContext();
+                    using (StreamWriter file = new StreamWriter("Categories.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.CategoriesList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("DishIngredient.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.DishIngredientList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("Dish.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.DishList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("Ingredient.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.IngredientList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("MenuCategorie.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.MenuCategorieList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("MenuDish.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.MenuDishList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("Menu.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.MenuList);
+                        file.Write(json);
+                    }
+                    using (StreamWriter file = new StreamWriter("Store.json"))
+                    {
+                        var json = JsonConvert.SerializeObject(db.StoreList);
+                        file.Write(json);
+                    }
+
+                }));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

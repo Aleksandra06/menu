@@ -9,14 +9,16 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Name="label1" Margin="10,0,25,0" >Таблица:</Label>
-        <ComboBox Grid.Row="1" Name="option" Width="250" ItemsSource = "{Binding Spis_table}" Margin="10,0,40,26" SelectedItem="{Binding SelectTable}" Grid.RowSpan="2"/>
+        <ComboBox Grid.Row="1" Name="option" Width="250" ItemsSource = "{Binding Spis_table}" Margin="5" SelectedItem="{Binding SelectTable}"/>
         <Button Grid.Row="2" Margin="10,10,200,0" Command="{Binding ChangeTable}" CommandParameter="{Binding selectTable}">Изменить</Button>
+        <Button Grid.Row="3" Margin="10,10,125,0" Command="{Binding SaveJson}">Сохранить в формате json</Button>
     </Grid>
 </Window>
