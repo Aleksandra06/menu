@@ -5,7 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:menu.View.Change"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"   
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         Title="Редактирование" Height="330" Width="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger SourceObject="{Binding}" EventName="Closed">
+            <ei:CallMethodAction
+        TargetObject="{Binding ElementName=this}"
+        MethodName="Close"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -19,10 +28,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Content="Введите изменения" FontSize="15"  Grid.Column="0" HorizontalAlignment="Left" 
-                   VerticalAlignment="Bottom"/>
-        <Label x:Name="label1" Content="Введите название:" Grid.Column="0" Grid.Row="1" Margin="5" />
-        <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="2" HorizontalAlignment="Left" Height="26" Margin="5,5,0,0" 
+        <Label x:Name="label1" Content="Введите новое название меню:" Grid.ColumnSpan="2" Grid.Row="0" Margin="5" />
+        <Label x:Name="label2" Content="Выберете категорию меню:" Grid.ColumnSpan="2" Grid.Row="2" Margin="5" />
+        <TextBox x:Name="textBox" IsReadOnly="False" Grid.Row="1" HorizontalAlignment="Left" Height="26" Margin="5,5,0,0" 
                      TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="134"/>
         <ComboBox x:Name="comboBox2" IsReadOnly="False" Grid.Row="3" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" 
                       ItemsSource="{Binding MenuCategorySpis}" SelectedItem="{Binding MenuCategory}" VerticalAlignment="Top" Width="134"/>

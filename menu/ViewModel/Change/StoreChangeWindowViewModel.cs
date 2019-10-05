@@ -55,8 +55,15 @@ namespace menu.ViewModel.Change
                     store.IngredientsId = new EsaDbContext().IngredientList.Where(i => i.Name == SelectIngredients).Single().Id;
                     db.StoreChange(store);
                     StoreViewModel.Update();
+                    Close();
                 }));
             }
+        }
+
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

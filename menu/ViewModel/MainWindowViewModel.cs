@@ -14,7 +14,10 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using menu.View;
 using System.Windows;
-
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace menu.ViewModel
 {
@@ -23,7 +26,7 @@ namespace menu.ViewModel
         //public DataTable Select(string selectSQL) 
         //{
         //    DataTable dataTable = new DataTable("something");               
-                                                                            
+
         //    SqlConnection sqlConnection = new SqlConnection("server=ALEKSANDRA-ПК;Trusted_Connection=Yes;DataBase=something;");
         //    sqlConnection.Open();                                           
         //    SqlCommand sqlCommand = sqlConnection.CreateCommand();          
@@ -32,6 +35,10 @@ namespace menu.ViewModel
         //    sqlDataAdapter.Fill(dataTable);                                 
         //    return dataTable;
         //}
+        public void MainWindeowViewModel()
+        {
+            //Window.ResizeMode = ResizeMode.NoResize;
+        }
 
         public ObservableCollection<string> Spis_table
         {
@@ -146,6 +153,25 @@ namespace menu.ViewModel
                 }));
             }
         }
+
+        //private ICommand saveJson;
+        //public ICommand SaveJson
+        //{
+
+        //    get
+        //    {
+
+        //        return saveJson ?? (saveJson = new RelayCommand(() =>
+        //        {
+        //            //DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(List<CardModel>));
+        //            using (StreamWriter file = new StreamWriter("visitks.json"))
+        //            {
+        //                var json = JsonConvert.SerializeObject(model);
+        //                file.Write(json);
+        //            }
+        //        }));
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

@@ -34,9 +34,17 @@ namespace menu.ViewModel.Change
                     EsaDbContext db = new EsaDbContext();
                     db.MenuCategoriesChange(MeaningCat);
                     MenuCategorieViewModel.Update();
+                    Close();
                 }));
             }
         }
+        
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

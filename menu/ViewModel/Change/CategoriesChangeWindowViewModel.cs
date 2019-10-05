@@ -11,18 +11,23 @@ using menu.ViewModel;
 using menu.View;
 using menu.Model;
 using menu.Data;
+using menu.View.Change;
 
 namespace menu.ViewModel.Change
 {
     class CategoriesChangeWindowViewModel : INotifyPropertyChanged
     {
-        public Categories MeaningCat { get; set; }
+        public CategorieModel MeaningCat { get; set; }
         public string name { get; set; }
 
-        public CategoriesChangeWindowViewModel(Categories cat)
+        public CategoriesChangeWindowViewModel(CategorieModel cat)
         {
             MeaningCat = cat;
-            name = MeaningCat.ToString();
+            name = MeaningCat.Categorie;
+        }
+
+        public CategoriesChangeWindowViewModel()
+        {
         }
 
         private ICommand newMeaning;
@@ -34,12 +39,22 @@ namespace menu.ViewModel.Change
                 {
                     MeaningCat.Categorie = name;
                     EsaDbContext db = new EsaDbContext();
-                    db.CategoriesChange(MeaningCat);
+                    Categories tmpCat = new Categories();
+                    tmpCat.Id = Convert.ToInt32(MeaningCat.Id);
+                    tmpCat.Categorie = MeaningCat.Categorie;
+                    db.CategoriesChange(tmpCat);
                     CategoriesViewModel.Update();
+                    Close();
                 }));
             }
         }
-            
+
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

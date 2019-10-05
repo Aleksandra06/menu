@@ -34,9 +34,17 @@ namespace menu.ViewModel.Change
                     MeaningIng.Name = name;
                     db.IngredientChange(MeaningIng);
                     IngredientViewModel.Update();
+                    Close();
                 }));
             }
         }
+
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")

@@ -19,13 +19,13 @@ namespace menu.ViewModel
 {
     class CategoriesViewModel : INotifyPropertyChanged
     {
-        public static ObservableCollection<Categories> CategoriesCollection { get; set; } = new ObservableCollection<Categories>();
+        public static ObservableCollection<CategorieModel> CategoriesCollection { get; set; } = new ObservableCollection<CategorieModel>();
         public CategoriesViewModel()
         {
             EsaDbContext db = new EsaDbContext();
             foreach (var e in db.CategoriesList)
             {
-                CategoriesCollection.Add(e);
+                CategoriesCollection.Add(new CategorieModel(e));
             }
         }
 
@@ -36,7 +36,7 @@ namespace menu.ViewModel
             EsaDbContext db = new EsaDbContext();
             foreach (var e in db.CategoriesList)
             {
-                CategoriesCollection.Add(e);
+                CategoriesCollection.Add(new CategorieModel(e));
             }
         }
 
@@ -54,15 +54,6 @@ namespace menu.ViewModel
             }
         }
 
-        public bool Activity
-        {
-            get
-            {
-
-                return false;
-            }
-        }
-
         private ICommand add;
         public ICommand Add
         {
@@ -74,7 +65,7 @@ namespace menu.ViewModel
                     {
                         Categories newCat = new Categories();
                         EsaDbContext db = new EsaDbContext();
-                        newCat.Id = CategoriesCollection.Last().Id;
+                        newCat.Id = Convert.ToInt32(CategoriesCollection.Last().Id);
                         newCat.Categorie = newCategorie;
                         db.CategoriesAdd(newCat);
                         newCategorie = "";
@@ -110,9 +101,12 @@ namespace menu.ViewModel
             {
                 return delete ?? (delete = new RelayCommand<object>((object parametr) =>
                 {
-                    var parametrtmp = (Categories)parametr;
+                    var parametrtmp = (CategorieModel)parametr;
                     Delete del = new Delete();
-                    del.CategoriesDelete(parametrtmp);
+                    Categories cat = new Categories();
+                    cat.Categorie = parametrtmp.Categorie;
+                    cat.Id = Convert.ToInt32(parametrtmp.Id);
+                    del.CategoriesDelete(cat);
                     OnPropertyChanged("CategoriesCollection");
                     Update();
                 }
@@ -129,7 +123,7 @@ namespace menu.ViewModel
             {
                 return redactClick ?? (redactClick = new RelayCommand<object>((object parametr) =>
                 {
-                    var cat = (Categories)parametr;
+                    var cat = (CategorieModel)parametr;
                     CategoriesChangeWindowViewModel modelChange = new CategoriesChangeWindowViewModel(cat);
                     CategoriesChangeWindow viewChange = new CategoriesChangeWindow();
                     viewChange.DataContext = modelChange;

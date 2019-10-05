@@ -18,7 +18,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="CategoriesList" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding CategoriesCollection}" Height="370" Margin="0,0,0,-249">
+        <ListView Name="CategoriesList" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding CategoriesCollection}" SelectedItem="{Binding ItemCategories}" Height="370" Margin="0,0,0,-249">
             <ListView.View>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                     <GridView.Columns>
@@ -40,7 +40,7 @@
                                 <DataTemplate>
                                     <Button Name="deleteButton" Content="Удалить" Padding="1" Width="90" Height="25" 
                                             Command="{Binding ElementName=CategoriesList, Path=DataContext.Delete}" 
-                                            CommandParameter="{Binding}" IsEnabled="{Binding Activity}"/>
+                                            CommandParameter="{Binding}" IsEnabled="{Binding Path=Activity}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

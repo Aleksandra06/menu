@@ -55,8 +55,15 @@ namespace menu.ViewModel.Change
                     changeMC.Id = Menu.Id;
                     db.MenuChange(changeMC);
                     MenuViewModel.Update();
+                    Close();
                 }));
             }
+        }
+
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

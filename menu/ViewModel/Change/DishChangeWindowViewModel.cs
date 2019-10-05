@@ -52,8 +52,15 @@ namespace menu.ViewModel.Change
                     MeaningDish.Dish.Name = Name;
                     dbContext.DishChange(MeaningDish.Dish, SelectCategories);
                     DishViewModel.Update();
+                    Close();
                 }));
             }
+        }
+
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

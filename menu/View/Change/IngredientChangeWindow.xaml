@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:menu.View.Change"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"   
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         Title="Редактирование" Height="150" Width="250">
+    <i:Interaction.Triggers>
+        <i:EventTrigger SourceObject="{Binding}" EventName="Closed">
+            <ei:CallMethodAction
+        TargetObject="{Binding ElementName=this}"
+        MethodName="Close"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Grid.Row="0" Content="Введите изменения" HorizontalAlignment="Left" Margin="22,10,0,0" 
+        <Label x:Name="label" Grid.Row="0" Content="Введите новое назание ингредиента:" HorizontalAlignment="Left" Margin="22,10,0,0" 
                VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="22,10,0,-31" Grid.Row="1" TextWrapping="Wrap"
                  Text="{Binding name}" VerticalAlignment="Top" Width="120"/>

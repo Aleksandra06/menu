@@ -5,7 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:menu.View.Change"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"   
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
         Title="Редактирование" Height="200" Width="250">
+    <i:Interaction.Triggers>
+        <i:EventTrigger SourceObject="{Binding}" EventName="Closed">
+            <ei:CallMethodAction
+        TargetObject="{Binding ElementName=this}"
+        MethodName="Close"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75*"/>
@@ -18,9 +27,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Grid.Row="0" Grid.ColumnSpan="2" Content="Введите изменения" HorizontalAlignment="Left" 
+        <Label x:Name="label" Grid.Row="0" Grid.ColumnSpan="2" Content="Выберете ингредиент:" HorizontalAlignment="Left" 
                Margin="22,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labe2" Grid.Row="2" Grid.ColumnSpan="2" Content="Количество:" HorizontalAlignment="Left" 
+        <Label x:Name="labe2" Grid.Row="2" Grid.ColumnSpan="2" Content="Введите количество:" HorizontalAlignment="Left" 
                Margin="22,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="22,10,0,0" Grid.Row="3" 
                  TextWrapping="Wrap" Text="{Binding Quantity}" VerticalAlignment="Top" Width="120"/>

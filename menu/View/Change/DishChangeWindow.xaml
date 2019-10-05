@@ -5,7 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:menu.View.Change"
         mc:Ignorable="d"
-        Title="Редактирование" Height="160" Width="250">
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"   
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+        Title="Редактирование" Height="200" Width="250">
+    <i:Interaction.Triggers>
+        <i:EventTrigger SourceObject="{Binding}" EventName="Closed">
+            <ei:CallMethodAction
+        TargetObject="{Binding ElementName=this}"
+        MethodName="Close"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75*"/>
@@ -15,15 +24,18 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Grid.Row="0" Grid.ColumnSpan="2" Content="Введите изменения" HorizontalAlignment="Left" 
+        <Label x:Name="label" Grid.Row="0" Grid.ColumnSpan="2" Content="Введите новое название блюда:" HorizontalAlignment="Left" 
+               Margin="22,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labe2" Grid.Row="2" Grid.ColumnSpan="2" Content="Выберете категорию:" HorizontalAlignment="Left" 
                Margin="22,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="22,10,0,0" Grid.Row="1" 
                  TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="ComboBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="22,10,0,0" Grid.Row="2" 
+        <ComboBox x:Name="ComboBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="22,10,0,0" Grid.Row="3" 
                   ItemsSource="{Binding CategoriesSpis}" SelectedItem="{Binding SelectCategories}" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="button" Content="Применить" HorizontalAlignment="Left" Margin="7,11,0,0" Grid.Row="2" VerticalAlignment="Top" 
+        <Button x:Name="button" Content="Применить" HorizontalAlignment="Left" Margin="7,11,0,0" Grid.Row="3" VerticalAlignment="Top" 
                 Width="75" Command="{Binding NewMeaning}" Grid.Column="1"/>
     </Grid>
 </Window>

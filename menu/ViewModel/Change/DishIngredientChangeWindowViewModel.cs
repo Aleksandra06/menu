@@ -57,6 +57,7 @@ namespace menu.ViewModel.Change
                     changeDI.Id = MeaningDI.Id;
                     db.DishIngredientChange(changeDI);
                     DishIngredientViewModel.Update();
+                    Close();
                 }));
             }
         }
@@ -73,6 +74,12 @@ namespace menu.ViewModel.Change
                 }
                 return tmpDishsSpis;
             }
+        }
+
+        public event EventHandler Closed;
+        private void Close()
+        {
+            if (Closed != null) Closed(this, EventArgs.Empty);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
