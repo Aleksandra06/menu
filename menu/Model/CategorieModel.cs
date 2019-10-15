@@ -19,8 +19,8 @@ namespace menu.Model
             Categorie = cat.Categorie;
             EsaDbContext db = new EsaDbContext();
             var rn = db.DishList.Where(i => i.CatigorieId == cat.Id);
-            if (db.DishList.Where(i => i.CatigorieId == cat.Id) == null &&
-                db.MenuDishList.Where(i => i.CategorieId == cat.Id) == null)
+            if (!db.DishList.Any(i => i.CatigorieId == cat.Id) &&
+                !db.MenuDishList.Any(i => i.CategorieId == cat.Id))
                 Activity = true;
             else Activity = false;
         }

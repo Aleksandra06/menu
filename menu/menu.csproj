@@ -125,6 +125,7 @@
     <Compile Include="ViewModel\MenuCategorieViewModel.cs" />
     <Compile Include="ViewModel\MenuDishViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="SaveBase.cs" />
     <Compile Include="ViewModel\StoreViewModel.cs" />
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>

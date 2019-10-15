@@ -38,14 +38,22 @@ namespace menu.ViewModel
         //}
         public void MainWindeowViewModel()
         {
-            //Window.ResizeMode = ResizeMode.NoResize;
+            //SaveBase sb = new SaveBase();
+            //sb.SaveJson();
         }
+
+        int flag = 0;
 
         public ObservableCollection<string> Spis_table
         {
             get
             {
-                ObservableCollection<string> tmp_spis = new ObservableCollection<string>();
+                if (flag == 0)
+                {
+                    SaveBase sb = new SaveBase();
+                    sb.SaveJson();
+                }
+                    ObservableCollection<string> tmp_spis = new ObservableCollection<string>();
                 //string tmp_name;
                 //DataTable tmp_table = Select("SELECT table_name FROM information_schema.tables");
                 //for (int i = 0; i < tmp_table.Rows.Count; i++)
@@ -154,62 +162,7 @@ namespace menu.ViewModel
                 }));
             }
         }
-
-        private ICommand saveJson;
-        public ICommand SaveJson
-        {
-
-            get
-            {
-
-                return saveJson ?? (saveJson = new RelayCommand(() =>
-                {
-                    EsaDbContext db = new EsaDbContext();
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Categories.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.CategoriesList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\DishIngredient.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.DishIngredientList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Dish.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.DishList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Ingredient.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.IngredientList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\MenuCategorie.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.MenuCategorieList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\MenuDish.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.MenuDishList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Menu.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.MenuList);
-                        file.Write(json);
-                    }
-                    using (StreamWriter file = new StreamWriter(@"C:\Users\Public\Documents\menu\Store.json"))
-                    {
-                        var json = JsonConvert.SerializeObject(db.StoreList);
-                        file.Write(json);
-                    }
-                    MessageBox.Show(@"Cохранено в C:\Users\Public\Documents\menu\");
-                }));
-            }
-        }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
