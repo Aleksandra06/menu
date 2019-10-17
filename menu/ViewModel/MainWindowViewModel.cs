@@ -24,43 +24,17 @@ namespace menu.ViewModel
 {
     class MainWindowViewModel : INotifyPropertyChanged
     {
-        //public DataTable Select(string selectSQL) 
-        //{
-        //    DataTable dataTable = new DataTable("something");               
-
-        //    SqlConnection sqlConnection = new SqlConnection("server=ALEKSANDRA-ПК;Trusted_Connection=Yes;DataBase=something;");
-        //    sqlConnection.Open();                                           
-        //    SqlCommand sqlCommand = sqlConnection.CreateCommand();          
-        //    sqlCommand.CommandText = selectSQL;                           
-        //    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand); 
-        //    sqlDataAdapter.Fill(dataTable);                                 
-        //    return dataTable;
-        //}
-        public void MainWindeowViewModel()
+        public MainWindowViewModel()
         {
-            //SaveBase sb = new SaveBase();
-            //sb.SaveJson();
+            SaveBase sb = new SaveBase();
+            sb.SaveJson();
         }
-
-        int flag = 0;
 
         public ObservableCollection<string> Spis_table
         {
             get
             {
-                if (flag == 0)
-                {
-                    SaveBase sb = new SaveBase();
-                    sb.SaveJson();
-                }
-                    ObservableCollection<string> tmp_spis = new ObservableCollection<string>();
-                //string tmp_name;
-                //DataTable tmp_table = Select("SELECT table_name FROM information_schema.tables");
-                //for (int i = 0; i < tmp_table.Rows.Count; i++)
-                //{
-                //    tmp_name = tmp_table.Rows[i][0].ToString();
-                //    tmp_spis.Add(tmp_name);
-                //}
+                ObservableCollection<string> tmp_spis = new ObservableCollection<string>();
                 tmp_spis.Add("Categorie");
                 tmp_spis.Add("Dish");
                 tmp_spis.Add("DishIngredient");
